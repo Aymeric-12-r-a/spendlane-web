@@ -20,8 +20,7 @@ export default function SavingsCalculator() {
         </p>
       ) : (
         <p className="result">
-          <strong>{hoursSavedPerMonth(employees, reports)}</strong> hours saved per month, that is{' '}
-          <strong>{Math.round(hoursSavedPerMonth(employees, reports) * 52)}</strong> hours per year
+          <strong>{hoursSavedPerMonth(employees, reports)}</strong> hours saved per month
         </p>
       )}
       <p className="hint">12 minutes per report by hand, 2 minutes with Spendlane.</p>
