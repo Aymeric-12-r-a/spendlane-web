@@ -16,6 +16,9 @@ export function validateDemoForm(form: DemoForm): DemoErrors {
   if (!EMAIL_PATTERN.test(form.email.trim())) {
     errors.email = 'Enter a valid work email.';
   }
+  if (!form.companySize) {
+    errors.companySize = 'Choose your company size.';
+  }
   return errors;
 }
 

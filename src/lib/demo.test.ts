@@ -6,6 +6,11 @@ describe('validateDemoForm', () => {
     expect(validateDemoForm({ fullName: 'Karim Haddad', email: 'karim@northwind.io', companySize: '11-50' })).toEqual({});
   });
 
+  it('asks for a company size', () => {
+    const errors = validateDemoForm({ fullName: 'Karim Haddad', email: 'karim@northwind.io', companySize: '' });
+    expect(errors.companySize).toBe('Choose your company size.');
+  });
+
   it('refuses an email without a domain', () => {
     const errors = validateDemoForm({ fullName: 'Karim Haddad', email: 'karim@', companySize: '11-50' });
     expect(errors.email).toBe('Enter a valid work email.');
