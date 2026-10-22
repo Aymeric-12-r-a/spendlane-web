@@ -16,3 +16,8 @@ export function hoursSavedPerMonth(employees: number, reportsPerEmployee: number
   const minutesSaved = employees * reportsPerEmployee * MINUTES_SAVED_PER_REPORT;
   return Math.round((minutesSaved / 60) * 10) / 10;
 }
+
+export function hoursSavedPerYear(employees: number, reportsPerEmployee: number): number {
+  const minutesSaved = employees * reportsPerEmployee * MINUTES_SAVED_PER_REPORT * 12;
+  return Math.round(minutesSaved / 60);
+}

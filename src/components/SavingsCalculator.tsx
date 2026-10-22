@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { MAX_EMPLOYEES, MAX_REPORTS_PER_EMPLOYEE, hoursSavedPerMonth, parseCount } from '../lib/savings';
+import { MAX_EMPLOYEES, MAX_REPORTS_PER_EMPLOYEE, hoursSavedPerMonth, hoursSavedPerYear, parseCount } from '../lib/savings';
 
 export default function SavingsCalculator() {
   const [employeesValue, setEmployeesValue] = useState('50');
@@ -20,7 +20,8 @@ export default function SavingsCalculator() {
         </p>
       ) : (
         <p className="result">
-          <strong>{hoursSavedPerMonth(employees, reports)}</strong> hours saved per month
+          <strong>{hoursSavedPerMonth(employees, reports)}</strong> hours saved per month, that is{' '}
+          <strong>{hoursSavedPerYear(employees, reports)}</strong> hours per year
         </p>
       )}
       <p className="hint">12 minutes per report by hand, 2 minutes with Spendlane.</p>

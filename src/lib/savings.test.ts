@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { MAX_EMPLOYEES, hoursSavedPerMonth, parseCount } from './savings';
+import { MAX_EMPLOYEES, hoursSavedPerMonth, hoursSavedPerYear, parseCount } from './savings';
 
 describe('hoursSavedPerMonth', () => {
   it('saves 10 minutes per report', () => {
@@ -8,6 +8,12 @@ describe('hoursSavedPerMonth', () => {
 
   it('rounds to one decimal', () => {
     expect(hoursSavedPerMonth(1, 1)).toBe(0.2);
+  });
+});
+
+describe('hoursSavedPerYear', () => {
+  it('counts twelve months of savings', () => {
+    expect(hoursSavedPerYear(50, 4)).toBe(400);
   });
 });
 
