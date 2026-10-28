@@ -20,6 +20,33 @@ jobs:
       - run: npm test
       - run: npm run build
 
+  diagnose:
+    needs: check
+    if: failure() && github.event_name == 'pull_request' && !github.event.pull_request.head.repo.fork
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+    env:
+      GH_TOKEN: ${{ github.token }}
+      PR_NUMBER: ${{ github.event.pull_request.number }}
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: |
+          npm run lint > checks.txt 2>&1 || true
+          npm run typecheck >> checks.txt 2>&1 || true
+          npm test >> checks.txt 2>&1 || true
+      - run: gh pr diff "$PR_NUMBER" > pr.diff
+      - run: node scripts/ask-ai.mjs ai/diagnose.md checks.txt pr.diff > diagnosis.md
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+      - run: gh pr comment "$PR_NUMBER" --body-file diagnosis.md
+
   review:
     if: github.event_name == 'pull_request' && !github.event.pull_request.head.repo.fork
     runs-on: ubuntu-latest
