@@ -47,7 +47,7 @@ As a finance manager, I want to see how much time Spendlane would save my compan
 As a finance manager, I want to book a demo, so that the sales team contacts me with a demo that fits my company.
 
 - Full name, work email and company size are required. Each error shows next to its field.
-- A full name has 2 characters or more. Otherwise: "Enter your full name."
+- A full name has 2 to 100 characters, spaces around it ignored. Under 2: "Enter your full name." Over 100: "Shorten your full name to 100 characters."
 - A work email looks like `name@domain.tld`. Otherwise: "Enter a valid work email."
 - The company size is one of 1 to 10, 11 to 50, 51 to 250, or more than 250 employees. Otherwise: "Choose your company size."
 - On success, the page shows "Thank you" and "Our team will contact you within one business day." When `VITE_SALES_CALENDAR_URL` is set, it also offers a link to the sales calendar.

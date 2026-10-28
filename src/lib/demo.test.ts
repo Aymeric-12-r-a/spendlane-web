@@ -11,6 +11,11 @@ describe('validateDemoForm', () => {
     expect(errors.companySize).toBe('Choose your company size.');
   });
 
+  it('refuses a full name longer than 100 characters', () => {
+    const errors = validateDemoForm({ fullName: 'A'.repeat(300), email: 'karim@northwind.io', companySize: '11-50' });
+    expect(errors.fullName).toBe('Shorten your full name to 100 characters.');
+  });
+
   it('refuses an email without a domain', () => {
     const errors = validateDemoForm({ fullName: 'Karim Haddad', email: 'karim@', companySize: '11-50' });
     expect(errors.email).toBe('Enter a valid work email.');
