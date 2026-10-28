@@ -7,11 +7,15 @@ export type DemoForm = {
 export type DemoErrors = Partial<Record<keyof DemoForm, string>>;
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const MAX_FULL_NAME_LENGTH = 100;
 
 export function validateDemoForm(form: DemoForm): DemoErrors {
   const errors: DemoErrors = {};
-  if (form.fullName.trim().length < 2) {
+  const fullName = form.fullName.trim();
+  if (fullName.length < 2) {
     errors.fullName = 'Enter your full name.';
+  } else if (fullName.length > MAX_FULL_NAME_LENGTH) {
+    errors.fullName = 'Shorten your full name to 100 characters.';
   }
   if (!EMAIL_PATTERN.test(form.email.trim())) {
     errors.email = 'Enter a valid work email.';
