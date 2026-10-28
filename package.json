@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "type": "module",
   "engines": {
-    "node": ">=20"
+    "node": ">=22.9"
   },
   "scripts": {
     "dev": "vite",
@@ -13,7 +13,8 @@
     "lint": "eslint .",
     "typecheck": "tsc --noEmit && tsc --noEmit -p tsconfig.server.json",
     "test": "vitest run",
-    "test:server": "vitest run --config vitest.server.config.ts"
+    "test:server": "vitest run --config vitest.server.config.ts",
+    "ai": "node --env-file-if-exists=.env.local scripts/ask-ai.mjs"
   },
   "dependencies": {
     "react": "^18.3.1",

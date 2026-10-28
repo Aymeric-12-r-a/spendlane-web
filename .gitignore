@@ -3,3 +3,5 @@ dist
 .env
 .env.local
 .vercel
+pr.diff
+changes.txt
