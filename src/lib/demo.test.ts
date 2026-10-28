@@ -11,8 +11,13 @@ describe('validateDemoForm', () => {
     expect(errors.companySize).toBe('Choose your company size.');
   });
 
-  it('refuses a full name longer than 100 characters', () => {
-    const errors = validateDemoForm({ fullName: 'A'.repeat(300), email: 'karim@northwind.io', companySize: '11-50' });
+  it('accepts a full name of 100 characters', () => {
+    const errors = validateDemoForm({ fullName: 'A'.repeat(100), email: 'karim@northwind.io', companySize: '11-50' });
+    expect(errors.fullName).toBeUndefined();
+  });
+
+  it('refuses a full name of 101 characters', () => {
+    const errors = validateDemoForm({ fullName: 'A'.repeat(101), email: 'karim@northwind.io', companySize: '11-50' });
     expect(errors.fullName).toBe('Shorten your full name to 100 characters.');
   });
 
